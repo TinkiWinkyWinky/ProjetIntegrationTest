@@ -1,0 +1,43 @@
+﻿@model List<ProjetIntegrationTest.ViewModels.AuctionInfoVM>
+
+@{
+    ViewData["Title"] = "All Auctions";
+}
+
+<h1>All Auctions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Opening Date</th>
+            <th>Closing Date</th>
+            <th>Bidding Interval</th>
+            <th>Closing Interval</th>
+            <th>Time Increment Per Bet</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var auction in Model)
+        {
+            <tr>
+                <td>@auction.Id</td>
+                <td>@auction.OpeningDate</td>
+                <td>@auction.ClosingDate</td>
+                <td>@auction.BiddingInterval</td>
+                <td>@auction.ClosingInterval</td>
+                <td>@auction.TimeIncrementPerBet</td>
+                <td>
+                    <a asp-action="DetailsAuction" asp-route-id="@auction.Id" class="btn btn-info">Details</a>
+
+                    <a asp-action="EditAuction" asp-route-id="@auction.Id" class="btn btn-warning">Edit</a>
+                    <form asp-action="DeleteAuction" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@auction.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

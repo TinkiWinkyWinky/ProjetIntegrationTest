@@ -1,0 +1,45 @@
+﻿@model ProjetIntegrationTest.ViewModels.AuctionInfoVM
+
+@{
+    ViewData["Title"] = "Edit Auction";
+}
+
+<h1>Edit Auction</h1>
+
+<form asp-action="EditAuction" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="OpeningDate" class="control-label"></label>
+        <input asp-for="OpeningDate" class="form-control" />
+        <span asp-validation-for="OpeningDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ClosingDate" class="control-label"></label>
+        <input asp-for="ClosingDate" class="form-control" />
+        <span asp-validation-for="ClosingDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BiddingInterval" class="control-label"></label>
+        <input asp-for="BiddingInterval" class="form-control" />
+        <span asp-validation-for="BiddingInterval" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ClosingInterval" class="control-label"></label>
+        <input asp-for="ClosingInterval" class="form-control" />
+        <span asp-validation-for="ClosingInterval" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TimeIncrementPerBet" class="control-label"></label>
+        <input asp-for="TimeIncrementPerBet" class="form-control" />
+        <span asp-validation-for="TimeIncrementPerBet" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Save Changes</button>
+    </div>
+</form>

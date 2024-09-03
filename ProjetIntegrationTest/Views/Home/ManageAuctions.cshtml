@@ -1,0 +1,52 @@
+﻿@model ProjetIntegrationTest.ViewModels.LotManagementVM
+
+@{
+    ViewData["Title"] = "Manage Auctions for Lot";
+}
+
+<h1>Manage Auctions for Lot @Model.LotId</h1>
+
+<h3>Assigned Auctions</h3>
+<ul>
+    @foreach (var auction in Model.AssignedAuctions)
+    {
+        <li>
+            Auction @auction.Id
+            <form asp-action="RemoveLotFromAuction" method="post" style="display:inline;">
+                <input type="hidden" name="lotId" value="@Model.LotId" />
+                <input type="hidden" name="auctionId" value="@auction.Id" />
+                <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+        </li>
+    }
+</ul>
+
+<h3>Available Auctions</h3>
+<form asp-action="AssignLotToAuction" method="post">
+    <input type="hidden" name="lotId" value="@Model.LotId" />
+    <div class="form-group">
+        <label for="AuctionId">Select Auction:</label>
+        <select id="AuctionId" name="auctionId" class="form-control">
+            @foreach (var auction in Model.AvailableAuctions)
+            {
+                <option value="@auction.Id">Auction @auction.Id</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Assign Lot</button>
+</form>
+
+<h3>Assign Seller to Lot</h3>
+<form asp-action="AssignSellerToLot" method="post">
+    <input type="hidden" name="LotId" value="@Model.LotId" />
+    <div class="form-group">
+        <label for="SellerId">Select Seller:</label>
+        <select id="SellerId" name="SelectedSellerId" class="form-control">
+            @foreach (var seller in Model.AvailableSellers)
+            {
+                <option value="@seller.Id">@seller.FirstName @seller.LastName</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Assign Seller</button>
+</form>
